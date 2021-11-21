@@ -15,6 +15,10 @@ class AvatarRegalia : ItemSet() {
 
     override val id: Int = 666
 
+    val twoSetAbility = object : Ability() {
+        override val name: String = Companion.TWO_SET_BUFF_NAME
+    }
+
     fun twoSetConsumeProc(buff: Buff): Proc {
         return object : Proc() {
             override val triggers: List<Trigger> = listOf(
@@ -31,7 +35,7 @@ class AvatarRegalia : ItemSet() {
                 if(ability != null) {
                     // Choose the lower of the spell cost, or the 150 set reduction
                     val refund = min(ability.resourceCost(sp), 150.0).toInt()
-                    sp.addResource(refund, Resource.Type.MANA, TWO_SET_BUFF_NAME)
+                    sp.addResource(refund, Resource.Type.MANA, twoSetAbility)
                 }
             }
         }

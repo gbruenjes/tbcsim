@@ -32,7 +32,7 @@ class Blinkstrike (val sourceItem: Item) : ItemBuff(listOf(sourceItem)) {
                 eventType = EventType.DAMAGE,
                 damageType = Constants.DamageType.PHYSICAL,
                 isWhiteDamage = true,
-                abilityName = name,
+                ability = this,
                 amount = result.first,
                 result = result.second,
             )

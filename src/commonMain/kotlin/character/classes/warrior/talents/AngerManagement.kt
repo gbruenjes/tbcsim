@@ -12,8 +12,12 @@ class AngerManagement(currentRank: Int) : Talent(currentRank) {
     override val name: String = Companion.name
     override val maxRank: Int = 1
 
+    val amAbility = object : Ability() {
+        override val name: String = Companion.name
+    }
+
     val buff = object : Buff() {
-        override val name: String = "Anger Management"
+        override val name: String = Companion.name
         override val durationMs: Int = -1
         override val hidden: Boolean = true
 
@@ -24,7 +28,7 @@ class AngerManagement(currentRank: Int) : Talent(currentRank) {
             override val type: Type = Type.STATIC
 
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-                sp.addResource(1, Resource.Type.RAGE, name)
+                sp.addResource(1, Resource.Type.RAGE, amAbility)
             }
         }
     }

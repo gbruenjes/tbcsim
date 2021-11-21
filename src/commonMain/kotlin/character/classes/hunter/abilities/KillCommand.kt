@@ -16,6 +16,7 @@ import sim.SimParticipant
 class KillCommand : Ability() {
     companion object {
         const val name = "Kill Command"
+        const val icon = "ability_hunter_killcommand.jpg"
         const val flagBuffName = "Kill Command (available)"
 
         // This is just a marker to tell the rotation that we can cast Kill Command
@@ -28,6 +29,7 @@ class KillCommand : Ability() {
 
     override val id: Int = 34026
     override val name: String = Companion.name
+    override val icon: String = Companion.icon
     override fun gcdMs(sp: SimParticipant): Int = 0
     override fun cooldownMs(sp: SimParticipant): Int = 5000
     override val castableOnGcd: Boolean = true
@@ -77,7 +79,7 @@ class KillCommand : Ability() {
                 eventType = EventType.DAMAGE,
                 damageType = Constants.DamageType.PHYSICAL,
                 isWhiteDamage = true,
-                abilityName = name,
+                ability = this,
                 amount = result.first,
                 result = result.second,
             )

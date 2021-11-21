@@ -21,6 +21,10 @@ class CombatPotency(currentRank: Int) : Talent(currentRank) {
         return currentRank * 3
     }
 
+    val cpAbility = object : Ability() {
+        override val name: String = Companion.name
+    }
+
     val buff = object : Buff() {
         override val name: String = "${Companion.name} (Talent)"
         override val durationMs: Int = -1
@@ -46,7 +50,7 @@ class CombatPotency(currentRank: Int) : Talent(currentRank) {
             }
 
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-                sp.addResource(energyGenerated(), Resource.Type.ENERGY, name)
+                sp.addResource(energyGenerated(), Resource.Type.ENERGY, cpAbility)
             }
         }
 

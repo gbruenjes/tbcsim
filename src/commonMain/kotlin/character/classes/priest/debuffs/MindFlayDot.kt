@@ -22,7 +22,7 @@ class MindFlayDot(owner: SimParticipant, ticks: Int) : Debuff(owner) {
     override val tickDeltaMs: Int = durationMs / ticks
 
     val school = Constants.DamageType.SHADOW
-    val snapShotSpellPower = owner.spellDamageWithSchool(school).toDouble() 
+    val snapShotSpellPower = owner.spellDamageWithSchool(school).toDouble()
     var baseDotDamage: Double = 176.0
     val baseDotSpellCoeff = 0.19
 
@@ -37,10 +37,10 @@ class MindFlayDot(owner: SimParticipant, ticks: Int) : Debuff(owner) {
 
             val damageRoll: Double = Spell.baseDamageRollFromSnapShot(baseDotDamage, snapShotSpellPower, baseDotSpellCoeff)
             val result = Spell.attackRoll(
-                owner, 
+                owner,
                 damageRoll,
                 school,
-                bonusDamageMultiplier = t4FourSetBonusMulti, 
+                bonusDamageMultiplier = t4FourSetBonusMulti,
                 canCrit = false,
                 canResist = false,
             )
@@ -48,7 +48,7 @@ class MindFlayDot(owner: SimParticipant, ticks: Int) : Debuff(owner) {
             val event = Event(
                 eventType = EventType.DAMAGE,
                 damageType = school,
-                abilityName = name,
+                ability = this,
                 amount = result.first,
                 result = result.second
             )

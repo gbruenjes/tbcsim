@@ -9,6 +9,7 @@ import sim.SimParticipant
 class Netherblade : ItemSet() {
     companion object {
         const val TWO_SET_BUFF_NAME = "Netherblade (2 set)"
+        const val FOUR_SET_BUFF_NAME = "Netherblade (4 set)"
 
         fun twoSetSnDDurationIncreaseMs(): Int {
             return 3000
@@ -22,8 +23,12 @@ class Netherblade : ItemSet() {
         override val durationMs: Int = -1
     }
 
+    val fourSetAbility = object : Ability() {
+        override val name: String = FOUR_SET_BUFF_NAME
+    }
+
     val fourBuff = object : Buff() {
-        override val name: String = "Netherblade (4 set)"
+        override val name: String = FOUR_SET_BUFF_NAME
         override val durationMs: Int = -1
         override val hidden: Boolean = true
 
@@ -36,7 +41,7 @@ class Netherblade : ItemSet() {
 
             // TODO: does this also happen on misses/dodges/parry etc? otherwise we have to check here for a hit
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-                sp.addResource(1, Resource.Type.COMBO_POINT, name)
+                sp.addResource(1, Resource.Type.COMBO_POINT, fourSetAbility)
             }
         }
 

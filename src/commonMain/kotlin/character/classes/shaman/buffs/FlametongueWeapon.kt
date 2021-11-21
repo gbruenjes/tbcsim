@@ -49,7 +49,7 @@ class FlametongueWeapon(sourceItem: Item) : TempEnchant(sourceItem) {
                 sp.logEvent(
                     Event(
                         eventType = EventType.PROC,
-                        abilityName = ftAbility!!.name
+                        ability = ftAbility!!
                     )
                 )
             }

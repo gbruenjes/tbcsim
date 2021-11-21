@@ -35,7 +35,7 @@ class MindBlast : Ability() {
 
         return baseCooldownMs - impMbCooldownReductionMs
     }
-    
+
     override fun castTimeMs(sp: SimParticipant): Int = (baseCastTimeMs / sp.spellHasteMultiplier()).toInt()
 
     val baseResourceCost = 450.0
@@ -51,34 +51,34 @@ class MindBlast : Ability() {
 
         return baseResourceCost * fmMulti
     }
-    
+
     override fun cast(sp: SimParticipant) {
         val spTalent: ShadowPower? = sp.character.klass.talentInstance(ShadowPower.name)
         val spCrit = spTalent?.critIncreasePct() ?: 0.0
         val sfTalent: ShadowFocus? = sp.character.klass.talentInstance(ShadowFocus.name)
         val sfHit = sfTalent?.shadowHitIncreasePct() ?: 0.0
-        val t6FourSetMulti: Double = if(sp.buffs[AbsolutionRegalia.FOUR_SET_BUFF_NAME] == null) 1.0 else 1.1        
-        
+        val t6FourSetMulti: Double = if(sp.buffs[AbsolutionRegalia.FOUR_SET_BUFF_NAME] == null) 1.0 else 1.1
+
         val damageRoll = Spell.baseDamageRoll(
-            sp, 
+            sp,
             baseDamage.first,
-            baseDamage.second, 
-            school, 
+            baseDamage.second,
+            school,
             spellPowerCoeff,
         )
         val result = Spell.attackRoll(
-            sp, 
-            damageRoll, 
-            school, 
+            sp,
+            damageRoll,
+            school,
             bonusDamageMultiplier = t6FourSetMulti,
-            bonusHitChance = sfHit, 
+            bonusHitChance = sfHit,
             bonusCritChance = spCrit,
         )
 
         val event = Event(
             eventType = EventType.DAMAGE,
             damageType = school,
-            abilityName = name,
+            ability = this,
             amount = result.first,
             result = result.second,
         )

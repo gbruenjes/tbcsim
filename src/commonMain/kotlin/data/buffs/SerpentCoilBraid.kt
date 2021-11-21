@@ -16,6 +16,10 @@ class SerpentCoilBraid : Buff() {
     override val durationMs: Int = -1
     override val hidden: Boolean = true
 
+    val sbcAbility = object : Ability() {
+        override val name: String = "Serpent-Coil Braid"
+    }
+
     val proc = object : Proc() {
         override val triggers: List<Trigger> = listOf(
             Trigger.MAGE_MANA_GEM
@@ -35,7 +39,7 @@ class SerpentCoilBraid : Buff() {
         override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
             if(event?.eventType == EventType.RESOURCE_CHANGED) {
                 // Add an additional 25% resource
-                sp.addResource((event.amount * 0.25).toInt(), Resource.Type.MANA, "Serpent-Coil Braid")
+                sp.addResource((event.amount * 0.25).toInt(), Resource.Type.MANA, sbcAbility)
             }
 
             sp.addBuff(spBuff)

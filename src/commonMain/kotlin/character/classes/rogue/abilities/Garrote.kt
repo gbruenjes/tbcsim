@@ -39,7 +39,7 @@ class Garrote : Ability() {
         val event = Event(
             eventType = EventType.DAMAGE,
             damageType = Constants.DamageType.PHYSICAL,
-            abilityName = name,
+            ability = this,
             amount = 0.0,
             result = result.second,
         )
@@ -47,7 +47,7 @@ class Garrote : Ability() {
 
         if(result.second != EventResult.MISS) {
             sp.sim.target.addDebuff(GarroteDot(sp))
-            sp.addResource(1, Resource.Type.COMBO_POINT, name)
+            sp.addResource(1, Resource.Type.COMBO_POINT, this)
         }
 
         val triggerTypes = when(result.second) {

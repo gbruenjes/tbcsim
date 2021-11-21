@@ -17,6 +17,10 @@ class MalorneRegalia : ItemSet() {
     }
     override val id: Int = 639
 
+    val twoSetAbility = object : Ability() {
+        override val name: String = TWO_SET_BUFF_NAME
+    }
+
     val twoBuff = object : Buff() {
         override val name: String = TWO_SET_BUFF_NAME
         override val durationMs: Int = -1
@@ -32,7 +36,7 @@ class MalorneRegalia : ItemSet() {
             override val ppm: Double = 1.0
 
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-                sp.addResource(120, Resource.Type.MANA, TWO_SET_BUFF_NAME)
+                sp.addResource(120, Resource.Type.MANA, twoSetAbility)
             }
         }
 

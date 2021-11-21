@@ -27,6 +27,10 @@ class CycloneRegalia : ItemSet() {
         override val durationMs: Int = -1
     }
 
+    val fourSetAbility = object : Ability() {
+        override val name: String = Companion.FOUR_SET_BUFF_NAME
+    }
+
     fun fourSetConsumeProc(buff: Buff): Proc {
         return object : Proc() {
             override val triggers: List<Trigger> = listOf(
@@ -43,7 +47,7 @@ class CycloneRegalia : ItemSet() {
                 if(ability != null) {
                     // Choose the lower of the spell cost, or the 270 set reduction
                     val refund = min(ability.resourceCost(sp), 270.0).toInt()
-                    sp.addResource(refund, Resource.Type.MANA, FOUR_SET_BUFF_NAME)
+                    sp.addResource(refund, Resource.Type.MANA, fourSetAbility)
                 }
             }
         }

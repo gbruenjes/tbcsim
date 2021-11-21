@@ -49,7 +49,7 @@ class WoundPoison(sourceItem: Item) : Poison(sourceItem) {
                 sp.logEvent(
                     Event(
                         eventType = EventType.PROC,
-                        abilityName = poisonAbility!!.name
+                        ability = poisonAbility!!
                     )
                 )
             }

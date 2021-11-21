@@ -14,13 +14,17 @@ class AshtongueTalismanOfVision : Buff() {
     override val durationMs: Int = -1
     override val hidden: Boolean = true
 
+    val talismanAbility = object : Ability() {
+        override val name: String = Companion.name
+    }
+
     val lbProc = object : Proc() {
         override val triggers: List<Trigger> = listOf(Trigger.SHAMAN_CAST_LIGHTNING_BOLT)
         override val type: Type = Type.PERCENT
         override fun percentChance(sp: SimParticipant): Double = 50.0
 
         override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-            sp.addResource(170, Resource.Type.MANA, Companion.name)
+            sp.addResource(170, Resource.Type.MANA, talismanAbility)
         }
     }
 

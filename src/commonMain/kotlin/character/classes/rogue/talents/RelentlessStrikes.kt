@@ -14,6 +14,10 @@ class RelentlessStrikes(currentRank: Int) : Talent(currentRank) {
     override val name: String = Companion.name
     override val maxRank: Int = 1
 
+    val rsAbility = object : Ability() {
+        override val name: String = Companion.name
+    }
+
     fun chancePerComboPointPercent(): Double {
         return currentRank * 20.0
     }
@@ -36,7 +40,7 @@ class RelentlessStrikes(currentRank: Int) : Talent(currentRank) {
                 if(cpSpent != null) {
                     val chance = chancePerComboPointPercent() * cpSpent
                     if(Random.nextDouble() <= chance) {
-                        sp.addResource(energyRestored(), Resource.Type.ENERGY, name)
+                        sp.addResource(energyRestored(), Resource.Type.ENERGY, rsAbility)
                     }
                 } else {
                     logger.debug{ "event in proc of type ROGUE_CAST_FINISHER didn't include comboPointsSpent" }

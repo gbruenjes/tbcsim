@@ -37,7 +37,7 @@ class GarroteDot(owner: SimParticipant) : Debuff(owner) {
             val event = Event(
                 eventType = EventType.DAMAGE,
                 damageType = Constants.DamageType.PHYSICAL,
-                abilityName = name,
+                ability = this,
                 amount = dmgPerTick(sp),
                 result = EventResult.HIT
             )

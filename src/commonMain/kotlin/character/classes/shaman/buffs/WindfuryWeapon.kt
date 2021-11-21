@@ -85,7 +85,7 @@ class WindfuryWeapon(sourceItem: Item) : TempEnchant(sourceItem) {
                 sp.logEvent(
                     Event(
                         eventType = EventType.PROC,
-                        abilityName = wfAbility!!.name
+                        ability = wfAbility!!
                     )
                 )
             }

@@ -23,6 +23,10 @@ class WarbringerBattlegear : ItemSet() {
         override val durationMs: Int = -1
     }
 
+    val fourSetAbility = object : Ability() {
+        override val name: String = FOUR_SET_BUFF_NAME
+    }
+
     val fourBuff = object : Buff() {
         override val name: String = FOUR_SET_BUFF_NAME
         override val durationMs: Int = -1
@@ -36,7 +40,7 @@ class WarbringerBattlegear : ItemSet() {
             override val type: Type = Type.STATIC
 
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-                sp.addResource(2, Resource.Type.RAGE, name)
+                sp.addResource(2, Resource.Type.RAGE, fourSetAbility)
             }
         }
 

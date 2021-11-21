@@ -35,7 +35,7 @@ class Starshards : Ability() {
         val event = Event(
             eventType = EventType.DAMAGE,
             damageType = school,
-            abilityName = name,
+            ability = this,
             result = result.second,
         )
         sp.logEvent(event)
@@ -48,6 +48,5 @@ class Starshards : Ability() {
         sp.fireProc(listOf(Proc.Trigger.SPELL_HIT), listOf(), this, event)
 
         sp.sim.target.addDebuff(StarshardsDot(sp))
-    }     
+    }
 }
-

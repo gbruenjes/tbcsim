@@ -29,7 +29,7 @@ class ShadowWordPainDot(owner: SimParticipant) : Debuff(owner) {
         // 6 base ticks + 1 tick per talent point
         return tickDeltaMs * (6 + iswpTicks + t6TwoSetTick)
     }
-    
+
     val school = Constants.DamageType.SHADOW
     val snapShotSpellPower = owner.spellDamageWithSchool(school).toDouble()
     var baseDotDamage: Double = 206.0
@@ -48,7 +48,7 @@ class ShadowWordPainDot(owner: SimParticipant) : Debuff(owner) {
             val event = Event(
                 eventType = EventType.DAMAGE,
                 damageType = school,
-                abilityName = name,
+                ability = this,
                 amount = result.first,
                 result = result.second
             )

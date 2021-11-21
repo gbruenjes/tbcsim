@@ -37,7 +37,7 @@ class UnstableAffliction : Ability() {
         val event = Event(
             eventType = EventType.SPELL_CAST,
             damageType = school,
-            abilityName = name,
+            ability = this,
             result = result.second,
         )
         sp.logEvent(event)

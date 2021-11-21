@@ -11,6 +11,7 @@ class PetFrenzy : Buff() {
     override val name: String = "Frenzy (static)"
     override val durationMs: Int = -1
     override val hidden: Boolean = true
+    override val icon: String = "inv_misc_monsterclaw_03.jpg"
 
     val frenzyProc = object : Proc() {
         override val triggers: List<Trigger> = listOf(

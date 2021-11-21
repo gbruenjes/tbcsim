@@ -24,7 +24,7 @@ class Despair(val sourceItem: Item) : ItemBuff(listOf(sourceItem)) {
                 val damageEvent = Event(
                     eventType = EventType.DAMAGE,
                     damageType = Constants.DamageType.PHYSICAL_IGNORE_ARMOR,
-                    abilityName = name,
+                    ability = this,
                     amount = result.first,
                     result = result.second,
                 )

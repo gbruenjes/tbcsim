@@ -33,7 +33,7 @@ abstract class Stance: Ability() {
         val currentRage = sp.resources[Resource.Type.RAGE]?.currentAmount ?: 0
         val rageLost = max(currentRage - maxRageRetained, 0)
         if(rageLost > 0) {
-            sp.subtractResource(rageLost, Resource.Type.RAGE, "Stance Change")
+            sp.subtractResource(rageLost, Resource.Type.RAGE, this)
         }
     }
 }

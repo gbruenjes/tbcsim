@@ -16,7 +16,9 @@ class CataclysmRegalia : ItemSet() {
 
     override val id: Int = 635
 
-    // The two-set is entirely useless
+    val fourSetAbility = object : Ability() {
+        override val name: String = Companion.FOUR_SET_BUFF_NAME
+    }
 
     val fourBuff = object : Buff() {
         override val name: String = FOUR_SET_BUFF_NAME
@@ -31,7 +33,7 @@ class CataclysmRegalia : ItemSet() {
             override fun percentChance(sp: SimParticipant): Double = 25.0
 
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-                sp.addResource(120, Resource.Type.MANA, FOUR_SET_BUFF_NAME)
+                sp.addResource(120, Resource.Type.MANA, fourSetAbility)
             }
         }
 

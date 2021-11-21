@@ -23,6 +23,10 @@ class Initiative(currentRank: Int) : Talent(currentRank) {
         Garrote.name
     )
 
+    val initAbility = object : Ability() {
+        override val name: String = Companion.name
+    }
+
     val buff = object : Buff() {
         override val name: String = "${Companion.name} (Talent)"
         override val durationMs: Int = -1
@@ -42,7 +46,7 @@ class Initiative(currentRank: Int) : Talent(currentRank) {
             }
 
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-                sp.addResource(1, Resource.Type.COMBO_POINT, name)
+                sp.addResource(1, Resource.Type.COMBO_POINT, initAbility)
             }
         }
 

@@ -44,7 +44,7 @@ class DeadlyPoisonDot(owner: SimParticipant) : Debuff(owner) {
                 val event = Event(
                     eventType = EventType.DAMAGE,
                     damageType = Constants.DamageType.NATURE,
-                    abilityName = name,
+                    ability = this,
                     amount = dmgPerTick,
                     result = EventResult.HIT
                 )

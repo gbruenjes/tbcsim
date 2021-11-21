@@ -26,6 +26,6 @@ class LifeTap : Ability() {
         val withSpellPower = Spell.baseDamageRollSingle(sp, manaPerCast, Constants.DamageType.SHADOW, spellPowerCoeff)
 
         val totalAmount = withSpellPower * impLtMultiplier
-        sp.addResource(totalAmount.toInt(), Resource.Type.MANA, name)
+        sp.addResource(totalAmount.toInt(), Resource.Type.MANA, this)
     }
 }

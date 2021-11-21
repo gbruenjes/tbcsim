@@ -20,7 +20,7 @@ class VampiricTouchDot(owner: SimParticipant) : Debuff(owner) {
     override val name: String = Companion.name
     override val tickDeltaMs: Int = 3000
     override val durationMs: Int = 15000
-    
+
     val school = Constants.DamageType.SHADOW
     val snapShotSpellPower = owner.spellDamageWithSchool(school).toDouble()
     var baseDotDamage: Double = 130.0
@@ -39,7 +39,7 @@ class VampiricTouchDot(owner: SimParticipant) : Debuff(owner) {
             val event = Event(
                 eventType = EventType.DAMAGE,
                 damageType = school,
-                abilityName = name,
+                ability = this,
                 amount = result.first,
                 result = result.second
             )

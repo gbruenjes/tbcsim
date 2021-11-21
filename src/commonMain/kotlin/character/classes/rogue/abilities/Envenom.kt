@@ -67,7 +67,7 @@ class Envenom : FinisherAbility() {
         val event = Event(
             eventType = EventType.DAMAGE,
             damageType = Constants.DamageType.NATURE,
-            abilityName = name,
+            ability = this,
             comboPointsSpent = consumedComboPoints,
             amount = result.first,
             result = result.second,

@@ -41,7 +41,7 @@ class ExposeArmor : FinisherAbility() {
         val event = Event(
             eventType = EventType.DAMAGE,
             damageType = Constants.DamageType.PHYSICAL,
-            abilityName = name,
+            ability = this,
             comboPointsSpent = consumedComboPoints,
             amount = 0.0,
             result = result.second,

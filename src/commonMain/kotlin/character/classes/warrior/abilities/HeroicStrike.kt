@@ -58,7 +58,7 @@ class HeroicStrike : Ability() {
             val event = Event(
                 eventType = EventType.DAMAGE,
                 damageType = Constants.DamageType.PHYSICAL,
-                abilityName = name,
+                ability = this,
                 amount = result.first,
                 result = result.second,
             )

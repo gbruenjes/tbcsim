@@ -8,9 +8,13 @@ import sim.SimParticipant
 import data.model.Item
 import mechanics.Rating
 
-class AdrenalineRush() : Buff() {
+class AdrenalineRush : Buff() {
     companion object {
         const val name = "Adrenaline Rush"
+    }
+
+    val arAbility = object : Ability() {
+        override val name: String = Companion.name
     }
 
     override val name: String = Companion.name
@@ -23,11 +27,11 @@ class AdrenalineRush() : Buff() {
             Trigger.SERVER_TICK
         )
         override val type: Type = Type.STATIC
-    
+
         override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-            sp.addResource(extraEnergyPerTick, Resource.Type.ENERGY, name)
+            sp.addResource(extraEnergyPerTick, Resource.Type.ENERGY, arAbility)
         }
     }
-    
+
     override fun procs(sp: SimParticipant): List<Proc> = listOf(procTick)
 }

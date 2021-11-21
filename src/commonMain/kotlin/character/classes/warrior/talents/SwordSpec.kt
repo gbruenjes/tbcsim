@@ -38,6 +38,10 @@ class SwordSpec(currentRank: Int) : Talent(currentRank) {
             override val type: Type = Type.PERCENT
             override fun percentChance(sp: SimParticipant): Double = 1.0 * currentRank
 
+            val swordSpecAbility = object : Ability() {
+                override val name: String = Companion.name
+            }
+
             override fun shouldProc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?): Boolean {
                 // Sword spec cannot proc off itself
                 val isSwordSpec = ability?.name == name
@@ -57,7 +61,7 @@ class SwordSpec(currentRank: Int) : Talent(currentRank) {
                 sp.logEvent(Event(
                     eventType = EventType.DAMAGE,
                     damageType = Constants.DamageType.PHYSICAL,
-                    abilityName = name,
+                    ability = swordSpecAbility,
                     amount = result.first,
                     result = result.second,
                 ))

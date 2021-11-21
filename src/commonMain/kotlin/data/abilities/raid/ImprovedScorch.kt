@@ -16,6 +16,7 @@ class ImprovedScorch : Ability() {
         override val name: String = "Improved Scorch"
         // Assume the caster is always maintaining this
         override val durationMs: Int = -1
+        override val hidden: Boolean = true
         override val maxStacks: Int = 5
 
         override fun modifyStats(sp: SimParticipant): Stats {

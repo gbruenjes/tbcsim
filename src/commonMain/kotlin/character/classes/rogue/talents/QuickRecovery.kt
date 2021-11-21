@@ -14,6 +14,10 @@ class QuickRecovery(currentRank: Int) : Talent(currentRank) {
     override val name: String = Companion.name
     override val maxRank: Int = 2
 
+    val qrAbility = object : Ability() {
+        override val name: String = Companion.name
+    }
+
     fun finisherMissCostRefundFraction(): Double {
         return currentRank * 0.4
     }
@@ -32,7 +36,7 @@ class QuickRecovery(currentRank: Int) : Talent(currentRank) {
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
                 if(event?.result == EventResult.MISS || event?.result == EventResult.DODGE) {
                     val cost = ability?.resourceCost(sp) ?: 0.0
-                    sp.addResource((cost * finisherMissCostRefundFraction()).toInt(), Resource.Type.ENERGY, name)
+                    sp.addResource((cost * finisherMissCostRefundFraction()).toInt(), Resource.Type.ENERGY, qrAbility)
                 }
             }
         }

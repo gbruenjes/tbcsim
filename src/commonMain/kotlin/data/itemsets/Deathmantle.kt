@@ -23,6 +23,10 @@ class Deathmantle : ItemSet() {
         override val durationMs: Int = -1
     }
 
+    val fourSetAbility = object : Ability() {
+        override val name: String = Companion.FOUR_SET_BUFF_NAME
+    }
+
     fun noCostConsumeProc(buff: Buff): Proc {
         return object : Proc() {
             override val triggers: List<Trigger> = listOf(
@@ -38,7 +42,7 @@ class Deathmantle : ItemSet() {
 
                 // Refund the resource cost of the triggering ability
                 if(ability != null) {
-                    sp.addResource(ability.resourceCost(sp).toInt(), ability.resourceType(sp), FOUR_SET_BUFF_NAME)
+                    sp.addResource(ability.resourceCost(sp).toInt(), ability.resourceType(sp), fourSetAbility)
                 }
             }
         }

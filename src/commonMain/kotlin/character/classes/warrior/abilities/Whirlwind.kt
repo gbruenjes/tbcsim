@@ -9,7 +9,11 @@ import data.model.Item
 import mechanics.Melee
 import sim.*
 
-class Whirlwind : Ability() {
+class WhirlwindOH : Whirlwind() {
+    override val name: String = "Whirlwind (OH)"
+}
+
+open class Whirlwind : Ability() {
     companion object {
         const val name = "Whirlwind"
     }
@@ -50,7 +54,7 @@ class Whirlwind : Ability() {
         val mhEvent = Event(
             eventType = EventType.DAMAGE,
             damageType = Constants.DamageType.PHYSICAL,
-            abilityName = "$name (MH)",
+            ability = this,
             amount = mhResult.first,
             result = mhResult.second,
         )
@@ -67,7 +71,7 @@ class Whirlwind : Ability() {
             val ohEvent = Event(
                 eventType = EventType.DAMAGE,
                 damageType = Constants.DamageType.PHYSICAL,
-                abilityName = "$name (OH)",
+                ability = WhirlwindOH(),
                 amount = ohResult.first,
                 result = ohResult.second,
             )

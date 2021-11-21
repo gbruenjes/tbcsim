@@ -19,6 +19,6 @@ class DemonicRune : Ability() {
 
     override fun cast(sp: SimParticipant) {
         val manaRestored = Random.nextInt(900, 1500)
-        sp.addResource(manaRestored, Resource.Type.MANA, name)
+        sp.addResource(manaRestored, Resource.Type.MANA, this)
     }
 }

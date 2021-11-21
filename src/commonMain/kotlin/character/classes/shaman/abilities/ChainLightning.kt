@@ -11,6 +11,10 @@ import mechanics.General
 import mechanics.Spell
 import sim.*
 
+class ChainLightningOverload : ChainLightning() {
+    override val name = "Lightning Overload (CL)"
+}
+
 open class ChainLightning : Ability() {
     companion object {
         const val name = "Chain Lightning"
@@ -94,7 +98,7 @@ open class ChainLightning : Ability() {
         val event = Event(
             eventType = EventType.DAMAGE,
             damageType = school,
-            abilityName = if(isLoProc) { "Lightning Overload (CL)" } else name,
+            ability = if(isLoProc) { ChainLightningOverload() } else this,
             amount = result.first,
             result = result.second,
         )

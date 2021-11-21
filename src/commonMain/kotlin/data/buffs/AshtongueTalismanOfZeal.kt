@@ -24,14 +24,23 @@ class AshtongueTalismanOfZeal : Buff() {
 
         val baseDmg = 480
         val numTicks = durationMs / tickDeltaMs
+
+        val talismanAbility = object : Ability() {
+            override val name: String = Companion.name
+
+            override fun cast(sp: SimParticipant) {
+                owner.logEvent(Event(
+                    eventType = EventType.DAMAGE,
+                    damageType = Constants.DamageType.PHYSICAL,
+                    ability = this,
+                    result = EventResult.HIT,
+                    amount = (baseDmg / numTicks).toDouble(),
+                ))
+            }
+        }
+
         override fun tick(sp: SimParticipant) {
-            owner.logEvent(Event(
-                eventType = EventType.DAMAGE,
-                damageType = Constants.DamageType.PHYSICAL,
-                abilityName = Companion.name,
-                result = EventResult.HIT,
-                amount = (baseDmg / numTicks).toDouble(),
-            ))
+            talismanAbility.cast(sp)
         }
     }
 

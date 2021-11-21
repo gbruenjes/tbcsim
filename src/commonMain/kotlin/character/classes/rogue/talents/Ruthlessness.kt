@@ -13,6 +13,10 @@ class Ruthlessness(currentRank: Int) : Talent(currentRank) {
     override val name: String = Companion.name
     override val maxRank: Int = 3
 
+    val ruthlessnessAbility = object : Ability() {
+        override val name: String = Companion.name
+    }
+
     fun chanceToAddComboPointPercent(): Double {
         return currentRank * 20.0
     }
@@ -30,7 +34,7 @@ class Ruthlessness(currentRank: Int) : Talent(currentRank) {
             override fun percentChance(sp: SimParticipant): Double = chanceToAddComboPointPercent()
 
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-                sp.addResource(1, Resource.Type.COMBO_POINT, name)
+                sp.addResource(1, Resource.Type.COMBO_POINT, ruthlessnessAbility)
             }
         }
 

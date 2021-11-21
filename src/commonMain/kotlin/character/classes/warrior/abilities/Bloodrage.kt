@@ -17,6 +17,6 @@ class Bloodrage : Ability() {
 
     override fun cast(sp: SimParticipant) {
         // Close enough
-        sp.addResource(20, Resource.Type.RAGE, name)
+        sp.addResource(20, Resource.Type.RAGE, this)
     }
 }

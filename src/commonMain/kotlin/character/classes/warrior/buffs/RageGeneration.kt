@@ -17,6 +17,14 @@ class RageGeneration : Buff() {
     override val durationMs: Int = -1
     override val hidden: Boolean = true
 
+    val hitAbility = object : Ability() {
+        override val name: String = "Melee Hit"
+    }
+
+    val critAbility = object : Ability() {
+        override val name: String = "Melee Crit"
+    }
+
     val rageConversionFactor = 274.7
     fun damageToRage(sp: SimParticipant, damage: Double, item: Item, weaponFactor: Double): Int {
         val endlessRage = sp.character.klass.talents[EndlessRage.name]?.currentRank ?: 0 > 0
@@ -46,7 +54,7 @@ class RageGeneration : Buff() {
                     damageToRage(sp, damage, item, 3.5)
                 }
 
-                sp.addResource(rage, Resource.Type.RAGE, "Melee Hit")
+                sp.addResource(rage, Resource.Type.RAGE, hitAbility)
             }
         }
     }
@@ -70,7 +78,7 @@ class RageGeneration : Buff() {
                     damageToRage(sp, damage, item, 7.0)
                 }
 
-                sp.addResource(rage, Resource.Type.RAGE, "Melee Crit")
+                sp.addResource(rage, Resource.Type.RAGE, critAbility)
             }
         }
     }

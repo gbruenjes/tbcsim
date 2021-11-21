@@ -62,7 +62,7 @@ open class WindfuryTotem(val baseApBonus: Double, val baseManaCost: Double, val 
                     eventType = EventType.DAMAGE,
                     damageType = Constants.DamageType.PHYSICAL,
                     isWhiteDamage = true,
-                    abilityName = name,
+                    ability = this,
                     amount = result.first,
                     result = result.second,
                 )

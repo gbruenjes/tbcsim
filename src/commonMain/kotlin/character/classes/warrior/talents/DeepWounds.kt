@@ -31,6 +31,10 @@ class DeepWounds(currentRank: Int) : Talent(currentRank) {
         override val durationMs: Int = 12000
         override val tickDeltaMs: Int = 3000
 
+        val deepWoundsAbility = object : Ability() {
+            override val name: String = Companion.name
+        }
+
         override fun tick(sp: SimParticipant) {
             // 20% of average weapon damage per talent point over  full duration
             val tickPct = tickDeltaMs.toDouble() / durationMs.toDouble()
@@ -40,7 +44,7 @@ class DeepWounds(currentRank: Int) : Talent(currentRank) {
             owner.logEvent(Event(
                 eventType = EventType.DAMAGE,
                 damageType = Constants.DamageType.PHYSICAL,
-                abilityName = name,
+                ability = deepWoundsAbility,
                 amount = damageFullDuration * tickPct,
                 result = EventResult.HIT,
             ))

@@ -38,7 +38,7 @@ class InstantPoison(override val name: String, val item: Item) : Ability() {
         val event = Event(
             eventType = EventType.DAMAGE,
             damageType = Constants.DamageType.NATURE,
-            abilityName = name,
+            ability = this,
             amount = result.first,
             result = result.second
         )

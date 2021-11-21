@@ -38,14 +38,21 @@ class SyphonOfTheNathrezim(val sourceItem: Item) : Buff() {
             )
             override val type: Type = Type.STATIC
 
+            val syphonAbility = object : Ability() {
+                override val name: String = Companion.name
+                override fun cast(sp: SimParticipant) {
+                    sp.logEvent(Event(
+                        eventType = EventType.DAMAGE,
+                        damageType = Constants.DamageType.SHADOW,
+                        ability = this,
+                        result = EventResult.HIT,
+                        amount = 20.0,
+                    ))
+                }
+            }
+
             override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
-                sp.logEvent(Event(
-                    eventType = EventType.DAMAGE,
-                    damageType = Constants.DamageType.SHADOW,
-                    abilityName = Companion.name,
-                    result = EventResult.HIT,
-                    amount = 20.0,
-                ))
+                syphonAbility.cast(sp)
             }
         }
 

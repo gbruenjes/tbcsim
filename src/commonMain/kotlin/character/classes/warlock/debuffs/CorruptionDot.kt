@@ -4,6 +4,7 @@ import character.Ability
 import character.Buff
 import character.Debuff
 import character.Proc
+import character.classes.warlock.abilities.Nightfall as NightfallAbility
 import character.classes.warlock.talents.Contagion
 import character.classes.warlock.talents.EmpoweredCorruption
 import character.classes.warlock.talents.Nightfall
@@ -50,7 +51,7 @@ class CorruptionDot(owner: SimParticipant) : Debuff(owner) {
         override fun proc(sp: SimParticipant, items: List<Item>?, ability: Ability?, event: Event?) {
             sp.logEvent(Event(
                 eventType = EventType.PROC,
-                abilityName = Nightfall.name
+                ability = NightfallAbility()
             ))
 
             sp.addBuff(object: Buff() {
@@ -85,7 +86,7 @@ class CorruptionDot(owner: SimParticipant) : Debuff(owner) {
             val event = Event(
                 eventType = EventType.DAMAGE,
                 damageType = school,
-                abilityName = name,
+                ability = this,
                 amount = damageRoll,
                 result = EventResult.HIT
             )

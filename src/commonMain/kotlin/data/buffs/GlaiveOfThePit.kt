@@ -28,7 +28,7 @@ class GlaiveOfThePit(val sourceItem: Item) : ItemBuff(listOf(sourceItem)) {
                 val damageEvent = Event(
                     eventType = EventType.DAMAGE,
                     damageType = school,
-                    abilityName = name,
+                    ability = this,
                     amount = result.first,
                     result = result.second,
                 )
